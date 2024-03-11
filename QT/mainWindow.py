@@ -56,6 +56,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.bt_best_product)
 
+        self.verticalLayout_3 = QVBoxLayout()
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.label_best_product = QLabel(self.centralwidget)
         self.label_best_product.setObjectName(u"label_best_product")
         font2 = QFont()
@@ -65,7 +68,15 @@ class Ui_MainWindow(object):
         self.label_best_product.setFont(font2)
         self.label_best_product.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
-        self.horizontalLayout.addWidget(self.label_best_product)
+        self.verticalLayout_3.addWidget(self.label_best_product)
+
+        self.bt_add_product = QPushButton(self.centralwidget)
+        self.bt_add_product.setObjectName(u"bt_add_product")
+
+        self.verticalLayout_3.addWidget(self.bt_add_product)
+
+
+        self.horizontalLayout.addLayout(self.verticalLayout_3)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout)
@@ -139,6 +150,7 @@ class Ui_MainWindow(object):
         self.actionsitem_panel.setText(QCoreApplication.translate("MainWindow", u"system panel", None))
         self.bt_best_product.setText("")
         self.label_best_product.setText("")
+        self.bt_add_product.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.bt_buy.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u043b\u0430\u0442\u0438\u0442\u044c", None))
         self.menusattings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
