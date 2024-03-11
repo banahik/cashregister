@@ -1,13 +1,15 @@
 import sys  
+import random
 from PySide6 import QtWidgets, QtCore
 from PySide6.QtGui import QPixmap
 
 from QT import mainWindow
 
 from src.Product import Product 
+from detect import Info
 
 
-import random
+
 
 
 class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
@@ -21,7 +23,7 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-
+        self.info_window = Info()
 
         self.table_products.insertColumn(0)
         self.table_products.insertColumn(0)
@@ -37,6 +39,7 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         Product.load_data()
         self.add_products_in_table()
 
+        self.info_window.show()
 
     def add_products_in_table(self):
         """
