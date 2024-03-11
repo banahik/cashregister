@@ -46,27 +46,44 @@
             <height>200</height>
            </size>
           </property>
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>200</height>
+           </size>
+          </property>
           <property name="text">
            <string/>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_best_product">
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>15</pointsize>
-            <stylestrategy>PreferDefault</stylestrategy>
-           </font>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-          </property>
-         </widget>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="label_best_product">
+            <property name="font">
+             <font>
+              <family>Arial</family>
+              <pointsize>15</pointsize>
+              <stylestrategy>PreferDefault</stylestrategy>
+             </font>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="bt_add_product">
+            <property name="text">
+             <string>Добавить</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>
@@ -97,7 +114,11 @@
        </layout>
       </item>
       <item>
-       <widget class="QTableWidget" name="table_products"/>
+       <widget class="QTableWidget" name="table_products">
+        <property name="focusPolicy">
+         <enum>Qt::NoFocus</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

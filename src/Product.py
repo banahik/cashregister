@@ -38,5 +38,14 @@ class Product:
                     name_ru=product[1],
                     price=product[2],
                     image_data=product[3])
+            
+    @classmethod
+    def get_product_by_name(cls, name):
+
+        for one_product in cls.product_list:
+            if one_product.name == name:
+                return one_product
+            
+        return cls.product_list[0]
 
 

@@ -52,6 +52,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.bt_best_product.sizePolicy().hasHeightForWidth())
         self.bt_best_product.setSizePolicy(sizePolicy)
         self.bt_best_product.setMinimumSize(QSize(200, 200))
+        self.bt_best_product.setMaximumSize(QSize(200, 200))
 
         self.horizontalLayout.addWidget(self.bt_best_product)
 
@@ -92,6 +93,7 @@ class Ui_MainWindow(object):
 
         self.table_products = QTableWidget(self.centralwidget)
         self.table_products.setObjectName(u"table_products")
+        self.table_products.setFocusPolicy(Qt.NoFocus)
 
         self.verticalLayout_2.addWidget(self.table_products)
 
