@@ -24,6 +24,7 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         super(MainWindow, self).__init__()
         self.setupUi(self)
         self.info_window = Info()
+        self.setWindowTitle('cashregister')
 
         self.table_products.insertColumn(0)
         self.table_products.insertColumn(0)
@@ -34,7 +35,7 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.bt_buy.clicked.connect(self.buy)
 
 
-
+        self.bt_decode.clicked.connect(self.detect)
 
         Product.load_data()
         self.add_products_in_table()
@@ -66,11 +67,18 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
     
 
 
-    def clicked_product(self):
+    def clicked_product(self, name = None):
         """
         Отобразить продукт на превью
         """
-        data = Product.get_product_by_name(self.sender().objectName())
+
+        if name == None:
+            print(self.sender().objectName())
+            data = Product.get_product_by_name(self.sender().objectName())
+        else:
+            data = Product.get_product_by_name(name)
+
+        print()
         pix = QPixmap()
         pix.loadFromData(data.image_data) 
         self.bt_best_product.setIcon(pix)
@@ -81,6 +89,7 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.product_sum = round(self.product_mass*data.price,3)
 
         label = f"""Товар: {data.name_ru}\nМасса: {self.product_mass}\nЦена: {data.price}\nСумма: { self.product_sum}"""
+        label = f"""Товар: {data.name_ru}\nЦена: {data.price}"""
 
         self.label_best_product.setText(label)
     
@@ -110,6 +119,19 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
         self.All_sum = 0
         self.list_products_buy.clear()
         self.numbers_iterator = iter(range(1,999))
+
+
+    def detect(self):
+        """
+        Произвести детектирование
+        """
+
+        d = self.info_window.img_update()
+        print(d)
+        self.clicked_product(name=d)
+
+
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)

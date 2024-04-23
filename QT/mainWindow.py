@@ -19,8 +19,8 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QHeaderView, QLabel,
     QLayout, QLineEdit, QListWidget, QListWidgetItem,
     QMainWindow, QMenu, QMenuBar, QPushButton,
-    QSizePolicy, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+    QSizePolicy, QStatusBar, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -69,6 +69,11 @@ class Ui_MainWindow(object):
         self.label_best_product.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
         self.verticalLayout_3.addWidget(self.label_best_product)
+
+        self.bt_decode = QPushButton(self.centralwidget)
+        self.bt_decode.setObjectName(u"bt_decode")
+
+        self.verticalLayout_3.addWidget(self.bt_decode)
 
         self.bt_add_product = QPushButton(self.centralwidget)
         self.bt_add_product.setObjectName(u"bt_add_product")
@@ -136,6 +141,9 @@ class Ui_MainWindow(object):
         self.menusattings = QMenu(self.menubar)
         self.menusattings.setObjectName(u"menusattings")
         MainWindow.setMenuBar(self.menubar)
+        self.statusBar = QStatusBar(MainWindow)
+        self.statusBar.setObjectName(u"statusBar")
+        MainWindow.setStatusBar(self.statusBar)
 
         self.menubar.addAction(self.menusattings.menuAction())
         self.menusattings.addAction(self.actionsitem_panel)
@@ -150,6 +158,7 @@ class Ui_MainWindow(object):
         self.actionsitem_panel.setText(QCoreApplication.translate("MainWindow", u"system panel", None))
         self.bt_best_product.setText("")
         self.label_best_product.setText("")
+        self.bt_decode.setText(QCoreApplication.translate("MainWindow", u"\u0412\u0437\u0432\u0435\u0441\u0438\u0442\u044c", None))
         self.bt_add_product.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
         self.bt_buy.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u043b\u0430\u0442\u0438\u0442\u044c", None))

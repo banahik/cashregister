@@ -80,6 +80,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QPushButton" name="bt_decode">
+            <property name="text">
+             <string>Взвесить</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="bt_add_product">
             <property name="text">
              <string>Добавить</string>
@@ -177,6 +184,7 @@
    </widget>
    <addaction name="menusattings"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionsitem_panel">
    <property name="text">
     <string>system panel</string>
