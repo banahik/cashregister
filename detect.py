@@ -15,10 +15,9 @@ work_online = False
 
 cl = ['Carrot','Cucumber', 'Potato']
 cl_dict = {i: c for i, c in enumerate(cl)}
-YOLOmodel = YOLO('/Users/aleksandrgordejcik/Yandex.Disk-banahikk.localized/masters/samsung/train/train3/weights/best.pt')  # load a pretrained model (recommended for training)
-YoloHand = YOLO('/Users/aleksandrgordejcik/Yandex.Disk-banahikk.localized/masters/samsung/cashregister/models/best_hand.pt')  # load a pretrained model (recommended for training)
+YOLOmodel = YOLO('models/best.pt')  # load a pretrained model (recommended for training)
+YoloHand = YOLO('models/best_hand.pt')  # load a pretrained model (recommended for training)
 
-# YoloHand = YOLO()
 
 
 class Info(QtWidgets.QWidget):
@@ -52,9 +51,6 @@ class Info(QtWidgets.QWidget):
 
     def MY2(self,model,model_hand,image):
         result_value = {}
-        result_hand_value = {}
-        # Вывод результатов
-        # results = model.predict(image, device='mps')
 
         
         results_hand = model_hand(image, device='mps')
@@ -65,11 +61,11 @@ class Info(QtWidgets.QWidget):
             
 
             
-            max_product = result_hand.names[int(product)]
-            max_score = float(value)
-            if max_score > detection_threshold_hand:
+            max_product_h = result_hand.names[int(product)]
+            max_score_h = float(value)
+            if max_score_h > detection_threshold_hand:
                 
-                cv2.putText(image,f"  {max_product} {max_score}",(int(200), int(100)),cv2.FONT_HERSHEY_COMPLEX, 1.5 ,thickness = 2, color=(0,0,0))
+                cv2.putText(image,f"  {max_product_h} {max_score_h}",(int(200), int(100)),cv2.FONT_HERSHEY_COMPLEX, 1.5 ,thickness = 2, color=(0,0,0))
 
 
         results = model(image, device='mps')
@@ -86,40 +82,13 @@ class Info(QtWidgets.QWidget):
 
                 cv2.putText(image,f"  {max(result_value, key=result_value.get)}",(int(20), int(40)),cv2.FONT_HERSHEY_COMPLEX, 1.5 ,thickness = 2, color=(0,0,0))
                 cv2.putText(image,f"  {result_value}",(int(200), int(40)),cv2.FONT_HERSHEY_COMPLEX, 1.5 ,thickness = 2, color=(0,0,0))
-                return max_product
-            My_data = {}
+                print('!!!!!!!')
+                print(max_product_h)
+                if max_product_h == 'hand' and max_score_h > detection_threshold_hand:
+                    return None
+                else:
+                    return max_product
 
-            detections = []
-            # for index, r in enumerate(result.boxes.data.tolist()):
-            #     x1, y1, x2, y2, score, class_id = r
-            #     x1 = int(x1)
-            #     x2 = int(x2)
-            #     y1 = int(y1)
-            #     y2 = int(y2)
-            #     class_id = int(class_id)
-            #     if score > detection_threshold:
-            #         detections.append([x1, y1, x2, y2, score])
-            #         score = str(round(score,3))[2:4]
-            #         text = cl_dict[class_id]
-            #         cv2.putText(image,f"  {text}",(int(x1), int(y1-10)),cv2.FONT_HERSHEY_COMPLEX, 1.5 ,thickness = 2, color=(0,0,0))
-            #         cv2.rectangle(image, (int(x1), int(y1)), (int(x2), int(y2)),(0.4, 0.5, 0.5), 3)
-
-
-
-
-            # tracker.update(frame, detections)
-
-            # for track in tracker.tracks:
-
-            #     bbox = track.bbox
-
-            #     x1, y1, x2, y2= bbox
-            #     name = f'{x1}/{y1}/{x2}/{y2}'
-            #     track_id = track.track_id
-            #     color = (colors[track_id % len(colors)])
-
-            #     cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)),color, 3)
-            #     cv2.putText(frame,str(track_id),(int(x1), int(y1-10)),cv2.FONT_HERSHEY_COMPLEX, 1.5 ,thickness = 2, color=color)
         return None
 
 

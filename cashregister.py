@@ -128,7 +128,8 @@ class MainWindow(QtWidgets.QMainWindow, mainWindow.Ui_MainWindow):
 
         d = self.info_window.img_update()
         print(d)
-        self.clicked_product(name=d)
+        if d is not None:
+            self.clicked_product(name=d)
 
 
 
